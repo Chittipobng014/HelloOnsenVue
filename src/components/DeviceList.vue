@@ -1,23 +1,97 @@
-<template>
-        <v-ons-list>
-            <v-ons-list-header>Nearby Devices</v-ons-list-header>
-                <v-ons-list-item modifier="chevron" v-for="device in devices" :key="device.device_id">
-                    <div class="left">{{device.displayName}}</div>
-                    <div class="right"><v-ons-button @click="connectTo(device.device_id)">Connect</v-ons-button></div>
-                </v-ons-list-item>
-        </v-ons-list>
+<template id="main">
+  <v-ons-navigator swipeable
+    :page-stack="pageStack"
+    @push-page="pageStack.push($event)"
+  ></v-ons-navigator>
 </template>
 
+<template id="page1">       
+    <v-ons-list-item modifier="chevron">
+        <div class="left">Name: {{name}}</div>
+        <div class="right" @click="push"><v-ons-button @click="connectTo(id)">{{state}}</v-ons-button></div>
+    </v-ons-list-item>        
+</template>
+
+<template id="page2">
+    
+</template>
+
+
 <script>
-export default {
-    name: 'deviceList',
-    data(){
-        return{
-            devices: []
+const page1 = {
+    key: 'page1',
+    template: '#page1',
+    props: {
+        name:{
+            type: String,
+            required: true 
+        },
+        id:{
+            type: String,
+            required: true 
         }
     },
-    methods:{
-        
+    data(){
+        return{
+            state: 'Connect',
+            device_id: this.id
+        }
+    },
+    methods: {
+        connectTo: function(id){
+            ble.isConnected(id, (is) =>{
+                    ble.disconnect(id, (success) =>{
+                        console.log(JSON.stringify(success));
+                        this.state = 'Connect'                                       
+                    }), (error) =>{
+                        console.log(JSON.stringify(error));              
+                    };
+                }, (isnt) =>{
+                    ble.connect(id, (peripheral) =>{
+                        console.log(JSON.stringify(peripheral));
+                        this.state = 'Disconnect'                                        
+                    }), (error) =>{
+                        console.log(JSON.stringify(error));              
+                    };
+                });
+        },
+        push:() => {
+            this.$emit('push-page', {
+                page2,
+                onsNavigatorProps:{
+                    id: this.device_id
+                }
+            });
+        }
     }
 }
+
+const page2 = {
+    key: 'page2',
+    template: '#page2',
+    props: {
+        id: {
+            type: String,
+            required: true
+        }
+    }
+}
+
+export default {
+    
+    name: "deviceList",
+    template: '#main',
+    props: ["name", "id"],
+    data(){
+        return{
+            pageStack: [{
+                            page1,
+                            onsNavigatorProps:{
+                                id: this.id,
+                                name: this.name
+                            } 
+                        }]
+        }
+    }
+};
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <v-ons-button >Scan</v-ons-button>
+    <v-ons-button @click="deviceData">Scan</v-ons-button>
 </template>
 
 <script>
@@ -8,14 +8,15 @@ export default {
     data(){
         var data = []
         return{
-            devices: data
+            devices: data,
+            flag: false
         }
     },
     methods:{
        deviceData:function(){
-           console.log(this.devices)
-           ble.startScan([], function (res) {
-                console.log(JSON.stringify(res));
+                this.devices = [];
+                ble.startScan([], (res) => {
+                console.log("scanning");
                 var device = [];
                 var displayName;
                 if (res.name) {
@@ -25,11 +26,20 @@ export default {
                     displayName = res.id;
                 }
                 this.devices.push({displayName: displayName, device_id: res.id});
-                console.log(JSON.stringify(this.$data.devices));
+                this.$emit('emitDevices', this.devices)
                 }, function (error) {
                 console.log(JSON.stringify(error));
-                });
-       },
+                });     
+                setTimeout(function () {
+                ble.stopScan(
+                    function () { console.log("Scan complete"); },
+                    function () { console.log("stopScan failed"); }
+                );
+            }, 10000);
+       },      
+    },
+     computed:{
+
     }
 }
 </script>
