@@ -7,15 +7,19 @@ import Vue from 'vue'
 import VueOnsen from 'vue-onsenui'
 import store from './store'
 import App from './App'
-import Hello from './Hello'
+import bluetooth from './js/bluetooth'
 
 Vue.config.productionTip = false
+
+Vue.prototype.$ble = bluetooth
 
 Vue.use(VueOnsen)
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  template: '<Hello/>',
-  components: { Hello }
+  template: '<App/>',
+  components: { App },
+  store: store,
+  bluetooth: bluetooth
 })

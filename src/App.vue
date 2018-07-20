@@ -1,22 +1,13 @@
 <template>
   <v-ons-page id="app">
-    <v-ons-splitter>
-      <v-ons-splitter-side swipeable collapse width="250px"
-        :animation="$ons.platform.isAndroid() ? 'overlay' : 'reveal'"
-        :open.sync="menuIsOpen">
-        <menu-page></menu-page>
-      </v-ons-splitter-side>
-
-      <v-ons-splitter-content>
-        <home-page></home-page>
-      </v-ons-splitter-content>
-    </v-ons-splitter>
+    <scan-page></scan-page>
   </v-ons-page>
 </template>
 
 <script>
 import HomePage from './components/HomePage'
 import MenuPage from './components/MenuPage'
+import ScanPage from './components/ScanPage'
 
 export default {
   name: 'app',
@@ -32,7 +23,8 @@ export default {
   },
   components: {
     HomePage,
-    MenuPage
+    MenuPage,
+    ScanPage
   }
 }
 </script>

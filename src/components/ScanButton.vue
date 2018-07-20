@@ -5,10 +5,9 @@
 <script>
 export default {
     name:'scanButton',
-    data(){
-        var data = []
+    data(){        
         return{
-            devices: data,
+            devices: [],
             flag: false
         }
     },
@@ -16,7 +15,6 @@ export default {
        deviceData:function(){
                 this.devices = [];
                 ble.startScan([], (res) => {
-                console.log("scanning");
                 var device = [];
                 var displayName;
                 if (res.name) {
@@ -32,7 +30,7 @@ export default {
                 });     
                 setTimeout(function () {
                 ble.stopScan(
-                    function () { console.log("Scan complete"); },
+                    function () { },
                     function () { console.log("stopScan failed"); }
                 );
             }, 10000);
