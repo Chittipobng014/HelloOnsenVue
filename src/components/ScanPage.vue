@@ -4,7 +4,6 @@
       <div class="left">        
       </div>
       <div class="center">{{ msg }}</div>
-      <div class="right"><scan-button @emitDevices="devicesResult"></scan-button></div>
     </v-ons-toolbar>
   <v-ons-navigator swipeable
     :page-stack="pageStack"
@@ -17,27 +16,24 @@
 <script>
 import DeviceLists from "./DeviceLists";
 import DeviceDetail from "./DeviceDetail";
-import ScanButton from './ScanButton'
 
 export default {
   name: "Scan",
   data() {
     return {
       msg: "Scan",
-      pageStack: []
+      pageStack: [],
+      devices: []
     };
   },
   methods: {
     pushPage(device) {
       this.pageStack.push(device);
     },
-    devicesResult(devices){  
-      this.$store.commit('scanResult', devices);
-      this.pageStack.push(DeviceLists)     
-    }
+      
   },
   components:{
-    ScanButton
+
   },
   computed: {
     scanResult: function(){
@@ -48,6 +44,10 @@ export default {
       var result = this.$store.getters.selectedDevice
       return result
     }
+  },
+  mounted: function(){
+    this.pageStack.push(DeviceLists);
+    console.log(JSON.stringify(this.scanResult))    
   }
 };
 </script>

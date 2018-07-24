@@ -1,6 +1,6 @@
 <template>
   <v-ons-page id="app">
-    <scan-page></scan-page>
+    <scan-page @created="deviceData"></scan-page>
   </v-ons-page>
 </template>
 
@@ -25,6 +25,41 @@ export default {
     HomePage,
     MenuPage,
     ScanPage
+  },
+  data(){
+    return {
+      devices: []
+    }
+  },
+  methods: {
+    deviceData: function() {            
+                this.devices = [];
+                ble.startScan([], (res) => {
+                var displayName;
+                if (res.name) {
+                    displayName = res.name;
+                }
+                else {
+                    displayName = res.id;
+                }
+                this.devices.push({displayName: displayName, device_id: res.id});
+                console.log(this.devices);                
+                this.$store.commit('scanResult', this.devices);
+                }, function (error) {
+                console.log(JSON.stringify(error));
+                });     
+                setTimeout(function () {
+                ble.stopScan(
+                    function () { },
+                    function () { console.log("stopScan failed"); }
+                );
+            }, 10000);
+       },
+  },
+  created: function(){
+    this.$ons.ready( () => {
+      this.deviceData();
+    })
   }
 }
 </script>

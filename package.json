@@ -71,8 +71,8 @@
   ],
   "cordova": {
     "plugins": {
-      "cordova-plugin-ble-central": {},
-      "cordova-plugin-whitelist": {}
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-ble-central": {}
     },
     "platforms": [
       "android"
