@@ -58,7 +58,7 @@ export default {
   },
   created: function(){
     this.$ons.ready( () => {
-      this.deviceData();
+      //this.deviceData();
     })
   }
 }

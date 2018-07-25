@@ -3,7 +3,7 @@
     <v-ons-toolbar class="home-toolbar">
       <div class="left">        
       </div>
-      <div class="center">{{ msg }}</div>
+      <div class="center titleColor">{{ msg }}</div>
     </v-ons-toolbar>
   <v-ons-navigator swipeable
     :page-stack="pageStack"
@@ -21,7 +21,7 @@ export default {
   name: "Scan",
   data() {
     return {
-      msg: "Scan",
+      msg: "Select Box",
       pageStack: [],
       devices: []
     };
@@ -51,3 +51,13 @@ export default {
   }
 };
 </script>
+
+<style>
+.toolbar {    
+    background: #4F4C49;
+}
+.titleColor{
+    color: #FFFFFF;
+    font-size: 24px    
+}
+</style>

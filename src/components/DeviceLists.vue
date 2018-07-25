@@ -1,15 +1,16 @@
 <template>
-  <v-ons-page>    
-    <v-ons-list-title>Devices</v-ons-list-title>
-    <v-ons-list>      
-      <device-list
-        v-for="data in scanResult" 
-        v-bind:key="data.device_id"
-        v-bind:id="data.device_id"
-        v-bind:name="data.displayName"
-        @toLists="push"   
-      ></device-list>
-    </v-ons-list>
+  <v-ons-page>
+    <div class="container">
+      <div class="">
+        <device-list
+          v-for="data in scanResult" 
+          v-bind:key="data.device_id"
+          v-bind:id="data.device_id"
+          v-bind:name="data.displayName"
+          @toLists="push"   
+        ></device-list>
+      </div>   
+    </div>    
   </v-ons-page>
 </template>
 
@@ -40,3 +41,24 @@ export default {
   }
 };
 </script>
+
+<style>
+.page__content {
+
+}
+.page__background {
+    background-color: #F0A536;
+}
+.flex{
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(300px, 1fr));
+  text-align: center;
+  margin-top: 2px;
+  justify-items: center;
+}
+.container{
+  margin: 0 auto;
+  padding-left: 79px;
+  padding-right: 79px
+}
+</style>
