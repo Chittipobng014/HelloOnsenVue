@@ -1,7 +1,8 @@
 <template>
 <v-ons-page>
     <v-ons-toolbar class="home-toolbar">
-      <div class="left">        
+      <div class="left">
+                
       </div>
       <div class="center titleColor">{{ msg }}</div>
     </v-ons-toolbar>

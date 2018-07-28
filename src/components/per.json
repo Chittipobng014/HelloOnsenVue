@@ -1,0 +1,60 @@
+{
+    "name": "Smart Box v.0.1b",
+    "id": "30:AE:A4:45:D1:A2",
+    "advertising": {},
+    "rssi": -46,
+    "services": [
+        "1801",
+        "1800",
+        "ad58e94e-226a-48bf-a844-c4f0f8425803"
+    ],
+    "characteristics": [
+        {
+            "service": "1801",
+            "characteristic": "2a05",
+            "properties": [
+                "Indicate"
+            ]
+        },
+        {
+            "service": "1800",
+            "characteristic": "2a00",
+            "properties": [
+                "Read"
+            ]
+        },
+        {
+            "service": "1800",
+            "characteristic": "2a01",
+            "properties": [
+                "Read"
+            ]
+        },
+        {
+            "service": "1800",
+            "characteristic": "2aa6",
+            "properties": [
+                "Read"
+            ]
+        },
+        {
+            "service": "ad58e94e-226a-48bf-a844-c4f0f8425803",
+            "characteristic": "ad58e94e-226a-48bf-a844-c4f0f8425803",
+            "properties": [
+                "Notify"
+            ],
+            "descriptors": [
+                {
+                    "uuid": "2902"
+                }
+            ]
+        },
+        {
+            "service": "ad58e94e-226a-48bf-a844-c4f0f8425803",
+            "characteristic": "ad58e94e-226a-48bf-a844-c4f0f8425803",
+            "properties": [
+                "Write"
+            ]
+        }
+    ]
+}

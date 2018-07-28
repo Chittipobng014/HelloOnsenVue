@@ -1,6 +1,6 @@
 <template>
   <v-ons-page id="app">
-    <scan-page @created="deviceData"></scan-page>
+    <router-view></router-view>
   </v-ons-page>
 </template>
 
@@ -8,6 +8,7 @@
 import HomePage from './components/HomePage'
 import MenuPage from './components/MenuPage'
 import ScanPage from './components/ScanPage'
+import AdminModule from './components/AdminModule'
 
 export default {
   name: 'app',
@@ -24,7 +25,8 @@ export default {
   components: {
     HomePage,
     MenuPage,
-    ScanPage
+    ScanPage,
+    AdminModule
   },
   data(){
     return {
@@ -57,7 +59,7 @@ export default {
        },
   },
   created: function(){
-    this.$ons.ready( () => {
+    this.$ons.ready( () => {   
       //this.deviceData();
     })
   }

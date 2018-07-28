@@ -10,51 +10,51 @@
         <v-ons-card class="pin">
           <v-ons-row style="margin-top: 30px">
             <v-ons-col>
-              <v-ons-button class="pinButton">
+              <v-ons-button class="pinButton" @click="press(1)">
                 1
               </v-ons-button>
             </v-ons-col>
             <v-ons-col>
-              <v-ons-button class="pinButton">
+              <v-ons-button class="pinButton" @click="press(2)">
                 2
               </v-ons-button>
               </v-ons-col>
             <v-ons-col>
-              <v-ons-button class="pinButton">
+              <v-ons-button class="pinButton" @click="press(3)">
                 3
               </v-ons-button>
             </v-ons-col>
           </v-ons-row>
           <v-ons-row style="margin-top: 50px">
             <v-ons-col>
-              <v-ons-button class="pinButton">
+              <v-ons-button class="pinButton" @click="press(4)">
                 4
               </v-ons-button>
             </v-ons-col>
             <v-ons-col>
-              <v-ons-button class="pinButton">
+              <v-ons-button class="pinButton" @click="press(5)">
                 5
               </v-ons-button>
             </v-ons-col>
             <v-ons-col>
-              <v-ons-button class="pinButton">
+              <v-ons-button class="pinButton" @click="press(6)">
                 6
               </v-ons-button>
             </v-ons-col>
           </v-ons-row>
           <v-ons-row style="margin-top: 50px">
             <v-ons-col
-            ><v-ons-button class="pinButton">
+            ><v-ons-button class="pinButton" @click="press(7)">
                 7
               </v-ons-button>
             </v-ons-col>
             <v-ons-col>
-              <v-ons-button class="pinButton">
+              <v-ons-button class="pinButton" @click="press(8)">
                 8
               </v-ons-button>
             </v-ons-col>
             <v-ons-col>
-              <v-ons-button class="pinButton">
+              <v-ons-button class="pinButton" @click="press(9)">
                 9
               </v-ons-button>
             </v-ons-col>
@@ -62,7 +62,7 @@
           <v-ons-row style="margin-top: 50px">
             <v-ons-col></v-ons-col>
             <v-ons-col>
-              <v-ons-button class="pinButton">
+              <v-ons-button class="pinButton" @click="press(0)">
                 0
               </v-ons-button>
             </v-ons-col>
