@@ -3,7 +3,7 @@
     <div class="container">
       <div class="">
         <device-list
-          v-for="data in scanResult" 
+          v-for="data in deviceList" 
           v-bind:key="data.device_id"
           v-bind:id="data.device_id"
           v-bind:name="data.displayName"
@@ -31,8 +31,8 @@ export default {
     }
   },
   computed: {
-    scanResult: function(){
-      var result = this.$store.getters.scanResult;
+    deviceList: function(){
+      var result = this.$store.getters.deviceList;
       return result;
     }
   },
@@ -43,9 +43,6 @@ export default {
 </script>
 
 <style>
-.page__content {
-
-}
 .page__background {
     background-color: #F0A536;
 }

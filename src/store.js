@@ -28,7 +28,7 @@ export default new Vuex.Store({
       state.selectedDevice = payload;
     },
     deviceList: (state, payload) => {
-      state.deviceList = payload;
+      state.deviceList.push(payload)
     }
   }
 })

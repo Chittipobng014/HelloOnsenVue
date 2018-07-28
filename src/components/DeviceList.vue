@@ -8,6 +8,7 @@
 <template>
          <v-ons-button class="center box" @click="selectDevice(peripheral)">
              <div>{{name}}</div>
+             <div>{{state}}</div>
          </v-ons-button>
 </template>
 
@@ -20,7 +21,8 @@ export default {
     props: ["name", "id"],
     data(){
         return{
-            state: 'Connect',
+            id: this.id,
+            state: 'Disconnected',
             switcher: false,
             peripheral: null
         }
@@ -31,7 +33,7 @@ export default {
                     ble.disconnect(id, (success) =>{
                         this.peripheral = null;
                         console.log(JSON.stringify(this.peripheral));
-                        this.state = 'Connect';                                     
+                        this.state = 'Disconnected';                                     
                     }), (error) =>{
                         console.log(JSON.stringify(error));              
                     };
@@ -39,7 +41,7 @@ export default {
                     ble.connect(id, (peripheral) =>{
                         this.peripheral = peripheral;
                         console.log(JSON.stringify(this.peripheral));
-                        this.state = 'Disconnect'        ;                                
+                        this.state = 'Connected'        ;                                
                     }), (error) =>{
                         console.log(JSON.stringify(error));              
                     };
@@ -56,6 +58,9 @@ export default {
             })*/
            
         },        
+    },
+    mounted(){
+        connectTo(this.id);
     }
 };
 </script>

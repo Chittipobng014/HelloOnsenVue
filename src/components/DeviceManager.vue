@@ -49,18 +49,33 @@ export default {
     },
     methods:{
         register: function(id) {
+            //password validate                        
             if (this.password === this.re_password) {
-                console.log('id:' + id + ', password: ' + this.password + ', re: ' + this.re_password + ', tel: ' + this.tel);
-            var obj = {
-                id : id,
-                password : this.password,
-                tel : this.tel
-            }
-           
+                var arr = JSON.stringify(this.deviceList);
+                if (arr == '[]') {// if first register
+                    this.$store.commit("deviceList", {device_id : id,   password : this.password,   tel : this.tel});
+                    console.log('First Init');                    
+                }else{
+                    var exist;
+                    for (let i = 0; i < this.deviceList.length; i++) {
+                        if (this.deviceList[i].device_id == id) {
+                            exist = true;
+                            break;
+                        } else{
+                            exist = false;
+                        }                        
+                    }
+                    if (exist == false) {
+                        this.$store.commit("deviceList", {device_id : id,   password : this.password,   tel : this.tel});
+                    }else{
+                        console.log('exist');                        
+                    }
+                } 
             }else{
                 console.log("Password doesn't match");                
             }
-            
+            this.saveToStorage(this.deviceList);
+            console.log(window.localStorage.getItem('devices'));                           
         },
         clear: function(){
             this.password = '';
@@ -68,8 +83,32 @@ export default {
             this.tel = '';
             console.log('Clear!');
             
+        },
+        saveToStorage: function(devices){
+            var storage = window.localStorage;
+            var get = JSON.parse(storage.getItem('device'));
+
+            if (get) {
+                for (let i = 0; i < get.length; i++) {
+                    if(get.device_id[i] == devices[i].device_id){
+                        console.log('exist');                      
+                    } else{
+                        var value = JSON.stringify(devices[i]);                    
+                        storage.setItem('devices', value);
+                    }                
+                }
+            } else{
+                var value = JSON.stringify(devices);                    
+                storage.setItem('devices', value); 
+            }      
         }
-    }
+    },
+    computed:{
+        deviceList: function() {
+            var result = this.$store.getters.deviceList;
+            return result;
+        }
+    }    
 }
 </script>
 
