@@ -44,7 +44,7 @@ export default {
 
 <style>
 .page__background {
-    background-color: #F0A536;
+    background-color: #ffc533;
 }
 .flex{
   display: grid;

@@ -14,7 +14,13 @@ export default new Vuex.Store({
       {displayName: "Beetle Box No.5" , device_id: "5"},
     ],
     selectedDevice: [],
-    deviceList: [],
+    deviceList: [
+      {displayName: "Beetle Box No.1" , device_id: "1"},
+      {displayName: "Beetle Box No.2" , device_id: "2"},
+      {displayName: "Beetle Box No.3" , device_id: "3"},
+      {displayName: "Beetle Box No.4" , device_id: "4"},
+      {displayName: "Beetle Box No.5" , device_id: "5"},
+    ],
     mainPage: HomePage
     
   },

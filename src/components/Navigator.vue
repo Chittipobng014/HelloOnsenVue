@@ -25,14 +25,13 @@ export default {
     return {
       msg: "Select Box",
       pageStack: [],
-      devices: []
+      devices: [],
     };
   },
   methods: {
     pushPage(device) {
       this.pageStack.push(device);
-    },
-      
+    },      
   },
   components:{
     HomePage
@@ -51,10 +50,14 @@ export default {
       return result
     }
   },
-  mounted: function(){
-    console.log(JSON.stringify(HomePage))   
-    console.log(JSON.stringify(this.mainPage));
+  created: function(){
+    console.log(JSON.stringify(this.page));
     this.pageStack.push(this.mainPage)     
+  },
+  watch:{
+    mainPage: function(val){
+      this.pageStack.push(val)      
+    }
   }
 };
 </script>

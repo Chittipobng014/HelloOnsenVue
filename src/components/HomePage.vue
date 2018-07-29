@@ -2,7 +2,7 @@
   <v-ons-page>
     <v-ons-row style="height: 100vh">
       <v-ons-col width="50%">
-        <div style="width: 100%; height: 100%; background-color: #ffc533; position: relative">
+        <div style="width: 100%; height: 100%; background-color: #ffc533; position: relative" @click="menuTo('start')">
           <v-ons-ripple
             color="rgba(64, 64, 64, 1)"
             background="rgba(64, 64, 64, 0.4)"
@@ -17,7 +17,7 @@
         </div>
       </v-ons-col>
       <v-ons-col width="50%">
-        <div style="width: 100%; height: 100%; background-color: #404040; position: relative">
+        <div style="width: 100%; height: 100%; background-color: #404040; position: relative" @click="menuTo('admin')">
           <v-ons-ripple
             color="rgba(255, 197, 51, 1)"
             background="rgba(255, 197, 51, 0.4)"
@@ -37,6 +37,8 @@
 
 
 <script>
+import AdminModule from './AdminModule'
+import DeviceLists from './DeviceLists'
 export default {
   name: 'home',
   data () {
@@ -46,8 +48,17 @@ export default {
   },
   methods: {
       menuTo: function(page){
-        
+        if (page == 'admin') {
+          this.$store.commit('mainPage', AdminModule)                
+        }else if (page == 'start') {
+          this.$store.commit('mainPage', DeviceLists)         
+        }
       }
+  },
+  computed:{
+    mainPage: function(){
+      return this.$store.getters.mainPage
+    }
   }
 }
 </script>
