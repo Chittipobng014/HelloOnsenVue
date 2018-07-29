@@ -54,8 +54,7 @@ export default {
   mounted: function(){
     console.log(JSON.stringify(HomePage))   
     console.log(JSON.stringify(this.mainPage));
-    this.pageStack.push(this.mainPage)
-     
+    this.pageStack.push(this.mainPage)     
   }
 };
 </script>
