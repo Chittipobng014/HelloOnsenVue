@@ -1,18 +1,20 @@
 <template>
   <v-ons-page id="app">
-    <admin-module></admin-module>
+    <navigator></navigator>
   </v-ons-page>
 </template>
 
 <script>
-import ScanPage from './components/ScanPage'
+import Navigator from './components/Navigator'
 import AdminModule from './components/AdminModule'
+import HomePage from './components/HomePage'
 
 export default {
   name: 'app',
   components: {
-    ScanPage,
-    AdminModule
+    Navigator,
+    AdminModule,
+    HomePage
   },
 }
 </script>

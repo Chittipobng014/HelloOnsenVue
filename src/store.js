@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import HomePage from './components/HomePage'
 
 Vue.use(Vuex)
 
@@ -13,12 +14,15 @@ export default new Vuex.Store({
       {displayName: "Beetle Box No.5" , device_id: "5"},
     ],
     selectedDevice: [],
-    deviceList: []
+    deviceList: [],
+    mainPage: HomePage
+    
   },
   getters: {
     scanResult: state => state.scanResult,
     selectedDevice: state => state.selectedDevice,
-    deviceList: state => state.deviceList
+    deviceList: state => state.deviceList,
+    mainPage: state => state.mainPage
   },
   mutations: {
     scanResult: (state, payload) => {
@@ -29,6 +33,9 @@ export default new Vuex.Store({
     },
     deviceList: (state, payload) => {
       state.deviceList.push(payload)
+    },
+    mainPage: (state, payload) => {
+      state.mainPage = payload
     }
   }
 })
